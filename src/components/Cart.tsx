@@ -1,16 +1,32 @@
 import React from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+import { Dispatch, compose } from 'redux';
 import { useHistory } from 'react-router-dom';
 import '../styles/cart.scss';
-import { Order, CartItem } from '../types';
+import { Order, AppState, AppActions } from '../types';
 import { DummyForm } from './DummyForm';
+import { addToOrdersAction, clearCartAction } from '../redux/actions';
 
-interface Prop {
-    items: CartItem[];
-    addToOrders: (orders: Order[]) => void;
-    clearCart: () => void;
+
+const mapStateToProps = (state: AppState) => {
+    return {
+        items: state.cartItems
+    };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => {
+    return {
+        addToOrders: (orders: Order[]) => dispatch(addToOrdersAction(orders)),
+        clearCart: () => dispatch(clearCartAction())
+    }
 }
 
-export const Cart: React.FC<Prop> = ({ items, addToOrders, clearCart }) => {
+let connector = connect(mapStateToProps, mapDispatchToProps);
+
+
+type Props = ConnectedProps<typeof connector>;
+
+const Cart: React.FC<Props> = ({ items = [], addToOrders, clearCart }) => {
 
     let history = useHistory();
 
@@ -125,3 +141,6 @@ export const Cart: React.FC<Prop> = ({ items, addToOrders, clearCart }) => {
         </div>
     )
 }
+
+
+export default compose(connector)(Cart);

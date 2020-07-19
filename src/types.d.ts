@@ -1,3 +1,5 @@
+import { type } from "os";
+
 type Author = {
     id: Number;
     name: string;
@@ -33,3 +35,27 @@ export type CartItem = {
     book: Book;
     quantity: number;
 }
+
+
+export type AddOrderAction = {
+    type: string,
+    orders: Order[]
+}
+
+export type AddToCartAction = {
+    type: string,
+    book: Book
+}
+
+export type SimpleAction = {
+    type: string
+}
+
+export type AppActions = AddOrderAction | AddToCartAction | SimpleAction;
+
+export type AppState = {
+    cartItems?: CartItem[],
+    books?: Book[],
+    orders?: Order[]
+};
+

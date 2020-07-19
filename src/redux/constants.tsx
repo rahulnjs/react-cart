@@ -1,0 +1,6 @@
+export const ACTION = {
+    LOAD_BOOKS: 'LOAD_BOOKS',
+    ADD_TO_CART: 'ADD_TO_CART',
+    CLEAR_CART: 'CLEAR_CART',
+    ADD_TO_ORDERS: 'ADD_TO_ORDERS'
+}

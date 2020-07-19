@@ -1,19 +1,33 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import '../styles/book-details.scss';
-import { Book } from '../types';
+import { Book, AppState, AppActions } from '../types';
+import { addToCartAction } from '../redux/actions';
+import { connect, ConnectedProps } from 'react-redux';
+import { Dispatch, compose } from 'redux';
 
 interface RouteParams {
   id: string;
 }
 
-interface Prop {
-  books: Book[]; 
-  addToCart: (book: Book) => void;
+const mapStateToProps = (state: AppState) => {
+  return {
+      books: state.books
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => {
+  return {
+      addToCart: (book: Book) => dispatch(addToCartAction(book)),
+  }
 }
 
+let connector = connect(mapStateToProps, mapDispatchToProps);
 
-export const BookDetails: React.FC<Prop> = ({books, addToCart}) => {
+type Props = ConnectedProps<typeof connector>;
+
+
+export const BookDetails: React.FC<Props> = ({books = [], addToCart}) => {
   let history = useHistory();
   let params = useParams<RouteParams>();
 
@@ -58,3 +72,5 @@ export const BookDetails: React.FC<Prop> = ({books, addToCart}) => {
     </div>
   )
 }
+
+export default compose(connector)(BookDetails);

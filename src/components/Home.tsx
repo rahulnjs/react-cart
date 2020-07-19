@@ -1,16 +1,30 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import '../styles/home.scss';
-import { Book } from '../types';
+import { Book, AppState, AppActions } from '../types';
 
 
-interface Prop {
-    books: Array<Book>;
-    addToCart: (book: Book) => void;
+import { connect, ConnectedProps } from 'react-redux';
+import { Dispatch, compose } from 'redux';
+import { addToCartAction } from '../redux/actions';
+
+const mapStateToProps = (state: AppState) => {
+    return {
+        books: state.books
+    };
 };
 
+const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => {
+    return {
+        addToCart: (book: Book) => dispatch(addToCartAction(book)),
+    }
+}
 
-export const Home: React.FC<Prop> = ({ books, addToCart }) => {
+let connector = connect(mapStateToProps, mapDispatchToProps);
+
+type Props = ConnectedProps<typeof connector>;
+
+export const Home: React.FC<Props> = ({ books = [], addToCart }) => {
 
     let history = useHistory();
 
@@ -51,11 +65,14 @@ export const Home: React.FC<Prop> = ({ books, addToCart }) => {
                             </div>
                             <div className="buy-now">
                                 <button className="btn-primary" onClick={() => buyNow(book)}>Buy Now</button>
-                            </div>                          
+                            </div>
                         </div>
-                    </div>                    
+                    </div>
                 ))
             }
         </div>
     )
 }
+
+
+export default compose(connector)(Home);

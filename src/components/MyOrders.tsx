@@ -1,12 +1,25 @@
 import React from 'react';
 import '../styles/my-order.scss';
-import { Order } from '../types';
+import { Order, AppState } from '../types';
 
-interface Prop {
-    orders: Order[];
-}
 
-export const MyOrders: React.FC<Prop> = ({ orders }) => {
+import { connect, ConnectedProps } from 'react-redux';
+import { Dispatch, compose } from 'redux';
+
+const mapStateToProps = (state: AppState) => {
+    return {
+        orders: state.orders
+    };
+};
+
+
+const mapDispatchToProps = {};
+
+let connector = connect(mapStateToProps, mapDispatchToProps);
+
+type Props = ConnectedProps<typeof connector>;
+
+export const MyOrders: React.FC<Props> = ({ orders = [] }) => {
     return (
         <div className="orders">
             {orders &&
@@ -48,3 +61,6 @@ export const MyOrders: React.FC<Prop> = ({ orders }) => {
         </div>
     )
 }
+
+
+export default compose(connector)(MyOrders);
