@@ -6,7 +6,7 @@ import '../styles/header.scss';
 export const Header: React.FC = () => {
     return (
         <div className="nav">
-            <div className="logo">ReactCart</div>
+            <div className="logo"><i className="fas fa-cookie"></i> ReactCart</div>
             <div className="links">
                 <ul>
                     <Link to="/">

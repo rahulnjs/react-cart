@@ -1,5 +1,5 @@
 import { ACTION } from './constants';
-import { Book, Order, AppActions, SimpleAction } from '../types';
+import { Book, Order, AppActions, SimpleAction, BooksLoadedAction, ShowTaostAction } from '../types';
 
 export const addToCartAction = (book: Book): AppActions => {
     return {
@@ -26,4 +26,36 @@ export const loadBooksAction = (): SimpleAction => {
     return {
         type: ACTION.LOAD_BOOKS
     };
+}
+
+
+export const booksLoadedAction = (books: Book[]): BooksLoadedAction => {
+    return {
+        type: ACTION.BOOKS_LOADED,
+        books
+    };
+}
+
+
+export const booksLoadFailed = (): SimpleAction => {
+    return {
+        type: ACTION.LOAD_BOOKS_FAILED
+    };
+} 
+
+
+export const showTaostAction = (text: string, delay: number): ShowTaostAction => {
+    return {
+        type: ACTION.SHOW_TOAST,
+        config: {
+            delay,
+            text
+        }
+    }
+}
+
+export const hideTaostAction = (): SimpleAction => {
+    return {
+        type: ACTION.HIDE_TOAST
+    }
 }

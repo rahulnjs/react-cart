@@ -6,6 +6,7 @@ import '../styles/cart.scss';
 import { Order, AppState, AppActions } from '../types';
 import { DummyForm } from './DummyForm';
 import { addToOrdersAction, clearCartAction } from '../redux/actions';
+import { EmptyBanner } from './Empty';
 
 
 const mapStateToProps = (state: AppState) => {
@@ -30,7 +31,7 @@ const Cart: React.FC<Props> = ({ items = [], addToOrders, clearCart }) => {
 
     let history = useHistory();
 
-    let bookPrice = items.reduce((total, item) => item.book.price * item.quantity + total, 0);;
+    let bookPrice = items.reduce((total, item) => item.book.price * item.quantity + total, 0);
     let tax = bookPrice * .18;
     let shippingCharge = bookPrice * .05;
     let total = bookPrice + tax + shippingCharge;
@@ -95,6 +96,10 @@ const Cart: React.FC<Props> = ({ items = [], addToOrders, clearCart }) => {
                         ))
 
                     }
+                    {
+                        items.length === 0 && 
+                        <EmptyBanner text="No Items in Cart!" /> 
+                    }
                 </div>
                 <div className="payment">
                     <h2>Payment Info</h2>
@@ -134,8 +139,8 @@ const Cart: React.FC<Props> = ({ items = [], addToOrders, clearCart }) => {
                     </div>
                 </div>
                 <div className="action">
-                    <button className="btn-secondary" onClick={() => history.push('/')}><i className="fas fa-clipboard-list"></i> Continue Shopping</button>
-                    <button className="btn-primary" onClick={checkout}><i className="fas fa-shopping-basket"></i> Checkout</button>
+                    <button className="btn-secondary " onClick={() => history.push('/')}><i className="fas fa-clipboard-list"></i> Continue Shopping</button>
+                    <button className={`btn-primary ${items.length === 0 ? 'disabled' : ''}`} onClick={checkout}><i className="fas fa-shopping-basket"></i> Checkout</button>
                 </div>
             </div>
         </div>

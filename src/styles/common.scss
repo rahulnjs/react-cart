@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css");
 
 $small-screen-up: 601px !default;
@@ -24,6 +24,7 @@ body {
     font-family: $font;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #fafafa;
 }
 
 button {
@@ -53,6 +54,11 @@ button {
     background-color: $secondary-btn-color;
 }
 
+.disabled {
+    pointer-events: none;
+    opacity: .3;
+}
+
 
 .footer {
     margin-top: 40px;
@@ -61,4 +67,22 @@ button {
     color: #fff;
     text-align: center;
     font-size: .8rem;
+}
+
+
+.empty-banner {
+    margin: 50px 0px;
+    text-align: center;
+
+    img {
+        width: 50%;
+        opacity: .3;
+        max-width: 300px;
+    }
+
+    .text {
+        text-transform: uppercase;
+        margin: 10px 0px;
+        color: #b8b8b8;
+    }
 }

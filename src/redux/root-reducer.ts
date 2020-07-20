@@ -7,5 +7,5 @@ import { BookReducuer } from './book-reducer';
 export const rootReducer = combineReducers({
     books: BookReducuer,
     cartItems: CartReducuer,
-    orders: OrderReducuer
+    orders: OrderReducuer,
 });

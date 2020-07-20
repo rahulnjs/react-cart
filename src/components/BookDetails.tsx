@@ -47,12 +47,12 @@ export const BookDetails: React.FC<Props> = ({books = [], addToCart}) => {
         </div>
         <div className="book__info">
           <div className="book__info__title">{book.title}</div>
-          <div className="book__info__rating"><i className="fas fa-star"></i> {book.average_rating}</div>
-          <div className="book__info__price"><i className="fas fa-dollar-sign"></i> {book.price}</div>
           <div className="book__info__author">{book.authors.author.name}</div>
+          <div className="book__info__rating"><span><i className="fas fa-star"></i> {book.average_rating}</span></div>
+          <div className="book__info__price"><i className="fas fa-dollar-sign"></i> {book.price}</div>
+          <div className="book__info__pub-year">{book.publication_year}</div>
           <div className="book__info__page-count">{book.num_pages}</div>
           <div className="book__info__isbn">{book.isbn13}</div>
-          <div className="book__info__pub-year">{book.publication_year}</div>
 
           <div className="book__action">
             <button className="btn-secondary" onClick={() => addToCart(book)}> <i className="fas fa-cart-plus"></i> Add to Cart</button>

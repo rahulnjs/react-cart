@@ -3,8 +3,11 @@
 .book-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     font-family: $font;
+
+    .empty {
+        flex-grow: 1;
+    }
 
     .book {
         margin: 5px;
@@ -23,6 +26,10 @@
         &__info__title {
             font-weight: 600;
             padding: 5px;
+            height: 20px;
+            text-overflow: ellipsis;
+            white-space: pre-wrap;
+            overflow: hidden;
 
             a {
                 text-decoration: none;
@@ -30,7 +37,7 @@
 
                 i {
                     color: gray;
-                    font-size: .7rem;
+                    font-size: 0.7rem;
                 }
             }
         }
@@ -46,12 +53,23 @@
         &__other {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 0px 5px;
+            margin-top: 10px;
 
             &__rating {
+                font-size: .8rem;
+
+                span {
+                    background-color: #3498DB;
+                    color: #fff;
+                    padding: 2px 4px;
+                    border-radius: 2px;
+                }
             }
 
             &__price {
+                font-size: 1.5rem;
             }
         }
 
@@ -81,7 +99,6 @@
                     border-left: none;*/
                 }
             }
-
         }
     }
 

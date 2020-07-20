@@ -6,7 +6,8 @@ import { Book, AppState, AppActions } from '../types';
 
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch, compose } from 'redux';
-import { addToCartAction } from '../redux/actions';
+import { addToCartAction, showTaostAction } from '../redux/actions';
+import { EmptyBanner } from './Empty';
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -16,7 +17,7 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => {
     return {
-        addToCart: (book: Book) => dispatch(addToCartAction(book)),
+        addToCart: (book: Book) => dispatch(addToCartAction(book))
     }
 }
 
@@ -39,12 +40,14 @@ export const Home: React.FC<Props> = ({ books = [], addToCart }) => {
                 books.map(book => (
                     <div key={String(book.id)} className="book">
                         <div className="book__thumb">
-                            <img src={book.image_url} alt={`Cover of ${book.title}`} />
+                            <Link to={`/book/${book.id}`} >
+                                <img src={book.image_url} alt={`Cover of ${book.title}`} title="Open" />
+                            </Link>
                         </div>
                         <div className="book__info">
                             <div className="book__info__title">
                                 <Link to={`/book/${book.id}`} >
-                                    {book.title} &nbsp; <i className="fas fa-external-link-alt"></i>
+                                    {book.title}
                                 </Link>
                             </div>
                             <div className="book__info__desc">
@@ -52,7 +55,7 @@ export const Home: React.FC<Props> = ({ books = [], addToCart }) => {
                             </div>
                             <div className="book__other">
                                 <div className="book__other__rating">
-                                    <i className="fas fa-star"></i> {book.average_rating}
+                                    <span><i className="fas fa-star"></i> {book.average_rating}</span>
                                 </div>
                                 <div className="book__other__price">
                                     ${book.price}
@@ -69,6 +72,12 @@ export const Home: React.FC<Props> = ({ books = [], addToCart }) => {
                         </div>
                     </div>
                 ))
+            }
+            {
+                books.length === 0 &&
+                <div className="empty">
+                    <EmptyBanner text="Loading books...." />
+                </div>
             }
         </div>
     )

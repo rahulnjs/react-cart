@@ -51,11 +51,25 @@ export type SimpleAction = {
     type: string
 }
 
-export type AppActions = AddOrderAction | AddToCartAction | SimpleAction;
+export type BooksLoadedAction ={
+    type: string,
+    books: Book[];
+}
+
+export type ShowTaostAction = {
+    type: string,
+    config: {
+        text: string,
+        delay: number
+    }
+}
+
+export type AppActions = AddOrderAction | AddToCartAction | SimpleAction | BooksLoadedAction | ShowTaostAction;
 
 export type AppState = {
     cartItems?: CartItem[],
     books?: Book[],
-    orders?: Order[]
+    orders?: Order[],
+    showToast?: boolean
 };
 

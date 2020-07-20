@@ -28,6 +28,57 @@
                 font-size: 1.5rem;
                 font-weight: 600;
             }
+
+            &__rating {
+                text-align: right;
+
+                span {
+                    display: inline-block;
+                    background-color: #3498DB;
+                    color: #fff;
+                    padding: 2px 4px;
+                    font-size: .9rem;
+                    border-radius: 2px;
+                }
+            }
+
+            &__price {
+
+                i {
+                    color: #b6b6b6;
+                }
+
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            &__page-count {
+                &::before {
+                    content: 'Pages ';
+                    color: gray;
+                }
+            }
+
+            &__author {
+                &::before {
+                    content: 'By ';
+                    color: gray;
+                }
+            }
+
+            &__isbn {
+                &::before {
+                    content: 'ISBN ';
+                    color: gray;
+                }
+            }
+
+            &__pub-year {
+                &::before {
+                    content: 'Published Year ';
+                    color: gray;
+                }
+            }
         }
 
         &__action {

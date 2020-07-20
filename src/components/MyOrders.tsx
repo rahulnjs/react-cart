@@ -1,10 +1,11 @@
 import React from 'react';
 import '../styles/my-order.scss';
-import { Order, AppState } from '../types';
+import { AppState } from '../types';
 
 
 import { connect, ConnectedProps } from 'react-redux';
-import { Dispatch, compose } from 'redux';
+import { compose } from 'redux';
+import { EmptyBanner } from './Empty';
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -57,6 +58,10 @@ export const MyOrders: React.FC<Props> = ({ orders = [] }) => {
                         </div>
                     </div>
                 ))
+            }
+            {
+                orders.length === 0 &&
+                <EmptyBanner text="You have not placed any orders!" />
             }
         </div>
     )
