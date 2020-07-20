@@ -42,20 +42,3 @@ export const booksLoadFailed = (): SimpleAction => {
         type: ACTION.LOAD_BOOKS_FAILED
     };
 } 
-
-
-export const showTaostAction = (text: string, delay: number): ShowTaostAction => {
-    return {
-        type: ACTION.SHOW_TOAST,
-        config: {
-            delay,
-            text
-        }
-    }
-}
-
-export const hideTaostAction = (): SimpleAction => {
-    return {
-        type: ACTION.HIDE_TOAST
-    }
-}

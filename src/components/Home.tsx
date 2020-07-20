@@ -6,7 +6,7 @@ import { Book, AppState, AppActions } from '../types';
 
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch, compose } from 'redux';
-import { addToCartAction, showTaostAction } from '../redux/actions';
+import { addToCartAction } from '../redux/actions';
 import { EmptyBanner } from './Empty';
 
 const mapStateToProps = (state: AppState) => {
